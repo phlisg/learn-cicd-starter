@@ -28,7 +28,5 @@ jobs:
       - name: Style
         run: test -z $(go fmt ./...)
 
-      - name: Static Analysis
-        uses: dominikh/staticcheck-action@v1
-        with:
-          version: "latest"
+      - name: Install staticcheck & run static analysis
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest && staticcheck ./...
