@@ -28,5 +28,10 @@ jobs:
       - name: Style
         run: test -z $(go fmt ./...)
 
-      - name: Install staticcheck & run static analysis
-        run: go install honnef.co/go/tools/cmd/staticcheck@latest && staticcheck ./...
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Run static analysis
+        run: staticcheck ./...
+        env:
+          PATH: ${{ env.PATH }}:$(go env GOPATH)/bin
